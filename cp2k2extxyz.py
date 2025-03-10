@@ -2,6 +2,7 @@ import os
 import sys
 from ase.io import read
 
+# The conversion factors were taken from https://physics.nist.gov/cuu/Constants/ 
 CONVERSION_FACTORS = {
     "au2eV": 27.21138625,    # Hartree to eV
     "au2eVA": 51.42206771,   # Hartree/Bohr to eV/A
@@ -9,21 +10,21 @@ CONVERSION_FACTORS = {
 
 def print_help():
     help_text = """
-Usage: python cp2k_to_extxyz.py path=<path> coordinates=<coordinates_filename> sp_output=<output_filename> lattice=<lattice_params> [from=<start_folder>] [to=<end_folder>] [step=<folder_step>] [convert_energy=<conversion>] [convert_forces=<conversion>]
+Usage: python cp2k2extxyz.py path=<path> coordinates=<coordinates_filename> sp_output=<output_filename> lattice=<lattice_params> [from=<start_folder>] [to=<end_folder>] [step=<folder_step>] [convert_energy=<conversion>] [convert_forces=<conversion>]
 
 Arguments:
-    path          : Base directory path containing subdirectories with input files. Each subdirectory will be processed.
-    coordinates   : Name of the coordinates file (e.g., 'coordinates.xyz') in each subdirectory.
-    sp_output     : Name of the output file (e.g., 'output') in each subdirectory, which contains total energy and force data.
-    lattice       : Lattice parameters in the form "a b c" (e.g., "15.0 15.0 15.0").
-    from          : (Optional) Starting number for the subdirectory loop. If not provided, all folders are processed.
-    to            : (Optional) Ending number for the subdirectory loop. If not provided, all folders are processed.
-    step          : (Optional) Step size for incrementing through subdirectories. Only used if 'from' and 'to' are provided.
-    convert_energy: (Optional) Convert energy values. Supported: 'au2eV'.
-    convert_forces: (Optional) Convert force values. Supported: 'au2eVA'.
+    path           : Base directory path containing subdirectories with input files. Each subdirectory will be processed.
+    coordinates    : Name of the coordinates file (e.g., 'coordinates.xyz') in each subdirectory.
+    sp_output      : Name of the output file (e.g., 'output') in each subdirectory, which contains total energy and force data.
+    lattice        : Lattice parameters in the form "a b c" (e.g., "15.0 15.0 15.0").
+    from           : (Optional) Starting number for the subdirectory loop. If not provided, all folders are processed.
+    to             : (Optional) Ending number for the subdirectory loop. If not provided, all folders are processed.
+    step           : (Optional) Step size for incrementing through subdirectories. Only used if 'from' and 'to' are provided.
+    convert_energy : (Optional) Convert energy values. Supported: 'au2eV'.
+    convert_forces : (Optional) Convert force values. Supported: 'au2eVA'.
 
 Example:
-    python cp2k_to_extxyz.py path=/data/simulations coordinates=coordinates.xyz sp_output=output lattice="15.0 15.0 15.0" from=1 to=100 step=5 convert_energy=au2eV convert_forces=au2eVA
+    python cp2k2extxyz.py path=/data/simulations coordinates=coordinates.xyz sp_output=output lattice="15.0 15.0 15.0" from=1 to=100 step=5 convert_energy=au2eV convert_forces=au2eVA
 
 If 'from' and 'to' are omitted, all subdirectories under 'path' will be processed.
 """
