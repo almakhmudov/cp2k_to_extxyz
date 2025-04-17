@@ -5,15 +5,33 @@ python cp2k2extxyz.py path=<path> coordinates=<coordinates_filename> \
 ```
 
 # Arguments
-path           : Base directory path containing subdirectories with input files. Each subdirectory will be processed.
-coordinates    : Name of the coordinates file (e.g., 'coordinates.xyz') in each subdirectory.
-sp_output      : Name of the output file (e.g., 'output') in each subdirectory, which contains total energy and force data.
-lattice        : Lattice parameters in the form "a b c" (e.g., "15.0 15.0 15.0").
-from           : (Optional) Starting number for the subdirectory loop. If not provided, all folders are processed.
-to             : (Optional) Ending number for the subdirectory loop. If not provided, all folders are processed.
-step           : (Optional) Step size for incrementing through subdirectories. Only used if 'from' and 'to' are provided.
-convert_energy : (Optional) Convert energy values. Supported: 'au2eV'.
-convert_forces : (Optional) Convert force values. Supported: 'au2eVA'.
+
+- `path` (Required):  
+  Base directory containing subdirectories with input files to process.
+
+- `coordinates` (Required):  
+  Name of the coordinates file in each subdirectory (e.g., `coordinates.xyz`).
+
+- `sp_output` (Required):  
+  Output file name in each subdirectory containing total energy and force data.
+
+- `lattice` (Required):  
+  Lattice parameters in the form `"a b c"` (e.g., `"15.0 15.0 15.0"`).
+
+- `from` (Optional):  
+  Starting index for subdirectory processing. If omitted, all subdirs are processed.
+
+- `to` (Optional):  
+  Ending index for subdirectory processing. If omitted, all subdirs are processed.
+
+- `step` (Optional):  
+  Step size between subdirectories. Only used if `from` and `to` are provided.
+
+- `convert_energy` (Optional):  
+  Convert energy values. Supported: `au2eV`.
+
+- `convert_forces` (Optional):  
+  Convert force values. Supported: `au2eVA`.
 
 # Example
 ```sh
